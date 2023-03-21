@@ -15,4 +15,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:itemIconTint="@color/selector_bottom_navi_color"
+        app:itemTextAppearanceActive="@style/TextAppearance.D2"
+        app:itemTextAppearanceInactive="@style/TextAppearance.D2"
+        app:itemTextColor="@color/selector_bottom_navi_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
