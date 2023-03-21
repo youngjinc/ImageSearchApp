@@ -1,7 +1,8 @@
-package org.sopt.imagesearch
+package org.sopt.imagesearch.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import org.sopt.imagesearch.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
