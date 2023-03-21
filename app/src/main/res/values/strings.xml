@@ -3,4 +3,7 @@
 
     <string name="menu_search">검색</string>
     <string name="menu_archive">보관함</string>
+
+    <string name="search_title">이미지나 동영상을\n검색해 보세요 😉</string>
+    <string name="search_bar_hint">ex) 뉴진스 Ditto</string>
 </resources>
