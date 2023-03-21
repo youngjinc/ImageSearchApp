@@ -14,10 +14,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_base"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:lineSpacingExtra="@dimen/line_spacing_base"
             android:text="@string/menu_archive"
             android:textAppearance="@style/TextAppearance.H1"
             android:textColor="@color/gray_700"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView

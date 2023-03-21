@@ -30,25 +30,27 @@
 
         <TextView
             android:id="@+id/tv_title"
-            style="@style/TextAppearance.H6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_small"
             android:layout_marginEnd="@dimen/spacing_small"
             android:ellipsize="end"
+            android:lineSpacingExtra="@dimen/line_spacing_base"
             android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.H6"
             android:textColor="@color/gray_700"
             app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
             tools:text="뉴진스, 데뷔 앨범으로 스포티파이 재생 수 2억 회 돌파" />
 
         <TextView
             android:id="@+id/tv_datetime"
-            style="@style/TextAppearance.D1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_micro"
             android:ellipsize="end"
+            android:lineSpacingExtra="4dp"
             android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.D1"
             android:textColor="@color/gray_300"
             app:layout_constraintEnd_toEndOf="@id/tv_title"
             app:layout_constraintStart_toStartOf="parent"

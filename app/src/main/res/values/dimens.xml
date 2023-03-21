@@ -5,6 +5,9 @@
     <dimen name="spacing_base">16dp</dimen>
     <dimen name="spacing_large">32dp</dimen>
 
+    <!-- Line Spacing-->
+    <dimen name="line_spacing_base">3dp</dimen>
+
     <!-- Size -->
     <dimen name="height_base">36dp</dimen>
 

@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="62dp"
+            android:lineSpacingExtra="@dimen/line_spacing_base"
             android:text="@string/search_title"
             android:textAppearance="@style/TextAppearance.H1"
             android:textColor="@color/gray_700"

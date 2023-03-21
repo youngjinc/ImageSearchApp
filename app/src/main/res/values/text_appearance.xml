@@ -1,62 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="TextAppearance.H1" parent="">
         <item name="android:fontFamily">@font/pretendard_b</item>
         <item name="android:textSize">24dp</item>
-        <item name="android:lineSpacingExtra">1dp</item>
     </style>
 
     <style name="TextAppearance.H2" parent="">
         <item name="android:fontFamily">@font/pretendard_b</item>
         <item name="android:textSize">20dp</item>
-        <item name="android:lineSpacingExtra">2dp</item>
     </style>
 
     <style name="TextAppearance.H3" parent="">
         <item name="android:fontFamily">@font/pretendard_b</item>
         <item name="android:textSize">18dp</item>
-        <item name="android:lineSpacingExtra">3dp</item>
     </style>
 
     <style name="TextAppearance.H4" parent="">
         <item name="android:fontFamily">@font/pretendard_b</item>
         <item name="android:textSize">16dp</item>
-        <item name="android:lineSpacingExtra">3dp</item>
     </style>
 
     <style name="TextAppearance.H5" parent="">
         <item name="android:fontFamily">@font/pretendard_sb</item>
         <item name="android:textSize">16dp</item>
-        <item name="android:lineSpacingExtra">3dp</item>
     </style>
 
     <style name="TextAppearance.H6" parent="">
         <item name="android:fontFamily">@font/pretendard_sb</item>
         <item name="android:textSize">14dp</item>
-        <item name="android:lineSpacingExtra">3dp</item>
     </style>
 
     <style name="TextAppearance.B1" parent="">
         <item name="android:fontFamily">@font/pretendard_r</item>
         <item name="android:textSize">16dp</item>
-        <item name="android:lineSpacingExtra">3dp</item>
     </style>
 
     <style name="TextAppearance.B2" parent="">
         <item name="android:fontFamily">@font/pretendard_r</item>
         <item name="android:textSize">14dp</item>
-        <item name="android:lineSpacingExtra">3dp</item>
     </style>
 
     <style name="TextAppearance.D1" parent="">
         <item name="android:fontFamily">@font/pretendard_r</item>
         <item name="android:textSize">12dp</item>
-        <item name="android:lineSpacingExtra">4dp</item>
     </style>
 
     <style name="TextAppearance.D2" parent="">
         <item name="android:fontFamily">@font/pretendard_r</item>
         <item name="android:textSize">10dp</item>
-        <item name="android:lineSpacingExtra">4dp</item>
     </style>
 </resources>
