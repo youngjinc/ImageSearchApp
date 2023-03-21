@@ -1,4 +1,4 @@
-package org.sopt.imagesearch.util
+package com.kakaobank.imagesearch.util
 
 import androidx.databinding.BindingAdapter
 import com.google.android.material.imageview.ShapeableImageView

@@ -1,8 +1,8 @@
-package org.sopt.imagesearch.presentation
+package com.kakaobank.imagesearch.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import org.sopt.imagesearch.R
+import com.kakaobank.imagesearch.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,11 +1,11 @@
-package org.sopt.imagesearch.presentation.search
+package com.kakaobank.imagesearch.presentation.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import org.sopt.imagesearch.R
+import com.kakaobank.imagesearch.R
 
 class SearchFragment : Fragment() {
     override fun onCreateView(

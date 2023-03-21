@@ -1,4 +1,4 @@
-package org.sopt.imagesearch
+package com.kakaobank.imagesearch
 
 import org.junit.Test
 
