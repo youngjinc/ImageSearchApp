@@ -51,7 +51,7 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/spacing_base"
                 android:layout_marginEnd="@dimen/spacing_small"
-                android:background="null"
+                android:background="@null"
                 android:hint="@string/search_bar_hint"
                 android:inputType="text"
                 android:textColor="@color/gray_700"
