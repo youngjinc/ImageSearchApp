@@ -10,11 +10,11 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
-    namespace 'com.kakaobank.imagesearch'
+    namespace 'com.kakaobank.imgsurfer'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.kakaobank.imagesearch"
+        applicationId "com.kakaobank.imgsurfer"
         minSdk 28
         targetSdk 33
         versionCode 1

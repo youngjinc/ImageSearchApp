@@ -1,4 +1,4 @@
-package com.kakaobank.imagesearch.util.binding
+package com.kakaobank.imgsurfer.util.binding
 
 import android.os.Bundle
 import android.view.LayoutInflater

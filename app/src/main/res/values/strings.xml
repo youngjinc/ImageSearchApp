@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Image Search</string>
+    <string name="app_name">Img Surfer</string>
 
     <string name="menu_search">검색</string>
     <string name="menu_archive">보관함</string>

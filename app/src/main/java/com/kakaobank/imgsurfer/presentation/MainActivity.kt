@@ -1,13 +1,13 @@
-package com.kakaobank.imagesearch.presentation
+package com.kakaobank.imgsurfer.presentation
 
 import android.os.Bundle
-import com.kakaobank.imagesearch.R
-import com.kakaobank.imagesearch.databinding.ActivityMainBinding
-import com.kakaobank.imagesearch.presentation.archive.ArchiveFragment
-import com.kakaobank.imagesearch.presentation.search.SearchFragment
-import com.kakaobank.imagesearch.util.binding.BindingActivity
-import com.kakaobank.imagesearch.util.extension.KakaoLog
-import com.kakaobank.imagesearch.util.extension.replace
+import com.kakaobank.imgsurfer.R
+import com.kakaobank.imgsurfer.databinding.ActivityMainBinding
+import com.kakaobank.imgsurfer.presentation.archive.ArchiveFragment
+import com.kakaobank.imgsurfer.presentation.search.SearchFragment
+import com.kakaobank.imgsurfer.util.binding.BindingActivity
+import com.kakaobank.imgsurfer.util.extension.KakaoLog
+import com.kakaobank.imgsurfer.util.extension.replace
 
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
