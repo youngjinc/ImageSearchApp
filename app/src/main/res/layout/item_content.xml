@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="content"
+            type="com.kakaobank.imgsurfer.domain.model.Content" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +21,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
+            app:image="@{content.imageUrl}"
             app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:radius="@{@dimen/radius_base}"
             tools:src="@drawable/sample_img" />
@@ -37,9 +47,11 @@
             android:ellipsize="end"
             android:lineSpacingExtra="@dimen/line_spacing_base"
             android:maxLines="1"
+            android:text="@{content.source}"
             android:textAppearance="@style/TextAppearance.H6"
             android:textColor="@color/gray_700"
             app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
+            app:visibility="@{!content.source.empty}"
             tools:text="뉴진스, 데뷔 앨범으로 스포티파이 재생 수 2억 회 돌파" />
 
         <TextView
@@ -50,6 +62,7 @@
             android:ellipsize="end"
             android:lineSpacingExtra="4dp"
             android:maxLines="1"
+            android:text="@{content.dateTime}"
             android:textAppearance="@style/TextAppearance.D1"
             android:textColor="@color/gray_300"
             app:layout_constraintEnd_toEndOf="@id/tv_title"

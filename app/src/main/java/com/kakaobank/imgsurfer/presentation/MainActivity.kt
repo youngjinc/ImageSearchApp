@@ -8,7 +8,9 @@ import com.kakaobank.imgsurfer.presentation.search.SearchFragment
 import com.kakaobank.imgsurfer.util.binding.BindingActivity
 import com.kakaobank.imgsurfer.util.extension.KakaoLog
 import com.kakaobank.imgsurfer.util.extension.replace
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
