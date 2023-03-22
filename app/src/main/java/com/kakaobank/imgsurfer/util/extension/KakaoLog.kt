@@ -20,6 +20,3 @@ object KakaoLog {
 
     fun e(message: String = "", throwable: Throwable) = Log.e(buildTag(), message, throwable)
 }
-
-
-
