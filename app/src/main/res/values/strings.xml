@@ -6,4 +6,6 @@
 
     <string name="search_title">이미지나 동영상을\n검색해 보세요 😉</string>
     <string name="search_bar_hint">ex) 뉴진스 Ditto</string>
+    <string name="search_empty_view_title">검색결과가 없어요.</string>
+    <string name="search_empty_view_description">다른 키워드로 검색하시거나\n철자와 띄어쓰기를 확인해 보세요.</string>
 </resources>

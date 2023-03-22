@@ -3,7 +3,9 @@ package com.kakaobank.imgsurfer.presentation.search
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.paging.LoadState
 import com.kakaobank.imgsurfer.R
 import com.kakaobank.imgsurfer.databinding.FragmentSearchBinding
 import com.kakaobank.imgsurfer.presentation.SearchResultPagingAdapter
@@ -37,6 +39,11 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
             if (id == EditorInfo.IME_ACTION_DONE)
                 viewModel.searchContent(keyword.text.toString())
             false
+        }
+
+        searchAdapter.addLoadStateListener { loadState ->
+            binding.layoutEmptyView.root.isVisible =
+                loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached
         }
     }
 

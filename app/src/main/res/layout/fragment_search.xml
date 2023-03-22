@@ -104,5 +104,17 @@
             app:layout_constraintTop_toBottomOf="@id/layout_search_bar"
             app:spanCount="2"
             tools:listitem="@layout/item_content" />
+
+        <include
+            android:id="@+id/layout_empty_view"
+            layout="@layout/item_empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="78dp"
+            android:visibility="invisible"
+            app:description="@{@string/search_empty_view_description}"
+            app:icon="@{@drawable/ic_search_circle}"
+            app:layout_constraintTop_toBottomOf="@id/layout_search_bar"
+            app:title="@{@string/search_empty_view_title}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
