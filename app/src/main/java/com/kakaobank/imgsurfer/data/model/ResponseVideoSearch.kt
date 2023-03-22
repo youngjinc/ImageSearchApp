@@ -5,12 +5,11 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseImageSearch(
-    @SerialName("thumbnail_url")
+data class ResponseVideoSearch(
+    @SerialName("thumbnail")
     val thumbnailUrl: String,
     val datetime: String,
-    @SerialName("display_sitename")
-    val source: String,
+    val author: String,
 ) {
-    fun toContentList() = Content(thumbnailUrl, datetime, source)
+    fun toContentList() = Content(thumbnailUrl, datetime, author)
 }

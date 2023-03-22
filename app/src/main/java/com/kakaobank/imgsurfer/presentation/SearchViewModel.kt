@@ -2,31 +2,32 @@ package com.kakaobank.imgsurfer.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kakaobank.imgsurfer.domain.model.Content
+import androidx.paging.cachedIn
 import com.kakaobank.imgsurfer.domain.repository.SearchRepository
-import com.kakaobank.imgsurfer.util.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(private val searchRepository: SearchRepository) :
     ViewModel() {
-    private var _searchUiState = MutableStateFlow<UiState<List<Content>>>(UiState.Init)
-    val searchUiState get() = _searchUiState.asStateFlow()
-    val searchKeyword = MutableStateFlow("")
+    val inputKeyword = MutableStateFlow("")
+    private val validKeyword = MutableStateFlow("")
 
-    fun searchContent() {
-        viewModelScope.launch {
-            searchRepository.searchImage(searchKeyword.value)
-                .onSuccess {
-                    _searchUiState.value =
-                        if (it.isEmpty()) UiState.Empty else UiState.Success(it)
-                }.onFailure {
-                    _searchUiState.value = UiState.Error(it.message)
-                }
-        }
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val searchResult = validKeyword.flatMapLatest {
+        if (it.isNotBlank()) searchRepository.searchContent(it)
+        else flow {}
+    }.cachedIn(viewModelScope)
+
+    fun searchContent(keyword: String) {
+        validKeyword.value = keyword
+    }
+
+    fun clearInputKeyword() {
+        inputKeyword.value = ""
     }
 }

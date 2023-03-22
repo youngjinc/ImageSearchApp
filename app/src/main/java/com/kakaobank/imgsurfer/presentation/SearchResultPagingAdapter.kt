@@ -2,18 +2,28 @@ package com.kakaobank.imgsurfer.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.kakaobank.imgsurfer.databinding.ItemContentBinding
 import com.kakaobank.imgsurfer.domain.model.Content
 
-class SearchResultAdapter : RecyclerView.Adapter<SearchResultAdapter.SearchResultViewHolder>() {
+class SearchResultPagingAdapter :
+    PagingDataAdapter<Content, SearchResultPagingAdapter.SearchResultViewHolder>(  //PagingDataAdapter
+        object : DiffUtil.ItemCallback<Content>() {
+            override fun areItemsTheSame(oldItem: Content, newItem: Content): Boolean =
+                oldItem.imageUrl == newItem.imageUrl
+
+            override fun areContentsTheSame(oldItem: Content, newItem: Content): Boolean =
+                oldItem == newItem
+        }
+    ) {
     private lateinit var inflater: LayoutInflater
-    private var results: List<Content> = mutableListOf()
 
     class SearchResultViewHolder(private val binding: ItemContentBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: Content) {
-            binding.content = data
+        fun onBind(data: Content?) {
+            data?.let { binding.content = it }
         }
     }
 
@@ -25,13 +35,6 @@ class SearchResultAdapter : RecyclerView.Adapter<SearchResultAdapter.SearchResul
     }
 
     override fun onBindViewHolder(holder: SearchResultViewHolder, position: Int) {
-        holder.onBind(results[position])
-    }
-
-    override fun getItemCount() = results.size
-
-    fun setResults(results: List<Content>) {
-        this.results = results
-        notifyDataSetChanged()
+        holder.onBind(getItem(position))
     }
 }
