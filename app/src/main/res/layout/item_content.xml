@@ -65,6 +65,7 @@
             android:textAppearance="@style/TextAppearance.D1"
             android:textColor="@color/gray_300"
             app:dateTime="@{content.dateTime}"
+            app:layoutMarginTop="@{content.source.blank == true ? @dimen/spacing_small : @dimen/spacing_micro}"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             tools:text="23. 3. 19. 오전 11:30" />
     </androidx.constraintlayout.widget.ConstraintLayout>

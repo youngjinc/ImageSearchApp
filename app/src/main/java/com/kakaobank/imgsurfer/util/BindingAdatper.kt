@@ -1,9 +1,11 @@
 package com.kakaobank.imgsurfer.util
 
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import androidx.databinding.BindingAdapter
 import coil.load
 import java.time.LocalDateTime
@@ -19,6 +21,13 @@ fun ImageView.setImage(imageUrl: String) {
 @BindingAdapter("visibility")
 fun View.setVisibility(isVisible: Boolean) {
     this.isVisible = isVisible
+}
+
+@BindingAdapter("layoutMarginTop")
+fun setLayoutMarginTop(view: View, dimen: Float) {
+    view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+        topMargin = dimen.toInt()
+    }
 }
 
 @BindingAdapter("dateTime")
