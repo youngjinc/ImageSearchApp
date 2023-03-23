@@ -7,6 +7,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.paging.LoadState
 import com.kakaobank.imgsurfer.R
 import com.kakaobank.imgsurfer.databinding.FragmentSearchBinding
+import com.kakaobank.imgsurfer.domain.model.Content
 import com.kakaobank.imgsurfer.presentation.SearchResultPagingAdapter
 import com.kakaobank.imgsurfer.presentation.SearchViewModel
 import com.kakaobank.imgsurfer.presentation.type.EmptyViewType
@@ -17,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_search) {
     private val viewModel: SearchViewModel by activityViewModels()
-    private val searchAdapter = SearchResultPagingAdapter()
+    private val searchAdapter = SearchResultPagingAdapter(::updateHeartState)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,5 +54,10 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
         collectFlow(viewModel.searchResult) {
             searchAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
+    }
+
+    private fun updateHeartState(content: Content?, isSelected: Boolean) {
+        if (content == null) return
+        viewModel.updateHeartState(content, isSelected)
     }
 }

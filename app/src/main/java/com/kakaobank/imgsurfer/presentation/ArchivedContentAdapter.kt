@@ -2,14 +2,14 @@ package com.kakaobank.imgsurfer.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kakaobank.imgsurfer.databinding.ItemContentBinding
 import com.kakaobank.imgsurfer.domain.model.Content
 
-class SearchResultPagingAdapter(private val onHeartClickListener: (Content?, Boolean) -> Unit) :
-    PagingDataAdapter<Content, SearchResultPagingAdapter.SearchResultViewHolder>(
+class ArchivedContentAdapter(private val onHeartClickListener: (Content?, Boolean) -> Unit) :
+    ListAdapter<Content, ArchivedContentAdapter.ArchivedContentViewHolder>(
         object : DiffUtil.ItemCallback<Content>() {
             override fun areItemsTheSame(oldItem: Content, newItem: Content): Boolean =
                 oldItem.imageUrl == newItem.imageUrl
@@ -20,10 +20,11 @@ class SearchResultPagingAdapter(private val onHeartClickListener: (Content?, Boo
     ) {
     private lateinit var inflater: LayoutInflater
 
-    class SearchResultViewHolder(private val binding: ItemContentBinding) :
+    class ArchivedContentViewHolder(private val binding: ItemContentBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: Content?, onHeartClickListener: (Content?, Boolean) -> Unit) {
-            data?.let { binding.content = it }
+        fun onBind(data: Content, onHeartClickListener: (Content?, Boolean) -> Unit) {
+            data.let { binding.content = it }
+            binding.ivHeart.isSelected = true
             binding.ivHeart.setOnClickListener {
                 it.isSelected = !it.isSelected
                 onHeartClickListener(data, it.isSelected)
@@ -31,14 +32,14 @@ class SearchResultPagingAdapter(private val onHeartClickListener: (Content?, Boo
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArchivedContentViewHolder {
         if (!::inflater.isInitialized)
             inflater = LayoutInflater.from(parent.context)
 
-        return SearchResultViewHolder(ItemContentBinding.inflate(inflater, parent, false))
+        return ArchivedContentViewHolder(ItemContentBinding.inflate(inflater, parent, false))
     }
 
-    override fun onBindViewHolder(holder: SearchResultViewHolder, position: Int) {
-        holder.onBind(getItem(position), onHeartClickListener)
+    override fun onBindViewHolder(holder: ArchivedContentViewHolder, position: Int) {
+        holder.onBind(currentList[position], onHeartClickListener)
     }
 }
