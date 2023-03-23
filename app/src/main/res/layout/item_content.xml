@@ -44,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_small"
             android:ellipsize="end"
             android:lineSpacingExtra="@dimen/line_spacing_base"
             android:maxLines="1"
@@ -52,13 +53,12 @@
             android:textColor="@color/gray_700"
             app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
             app:visibility="@{!content.source.empty}"
-            tools:text="뉴진스, 데뷔 앨범으로 스포티파이 재생 수 2억 회 돌파" />
+            tools:text="뉴진스" />
 
         <TextView
             android:id="@+id/tv_datetime"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_micro"
             android:ellipsize="end"
             android:lineSpacingExtra="4dp"
             android:maxLines="1"
@@ -66,6 +66,7 @@
             android:textColor="@color/gray_300"
             app:dateTime="@{content.dateTime}"
             app:layoutMarginTop="@{content.source.blank == true ? @dimen/spacing_small : @dimen/spacing_micro}"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             tools:text="23. 3. 19. 오전 11:30" />
     </androidx.constraintlayout.widget.ConstraintLayout>
