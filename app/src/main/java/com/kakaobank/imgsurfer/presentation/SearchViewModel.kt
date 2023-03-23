@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.kakaobank.imgsurfer.domain.repository.SearchRepository
+import com.kakaobank.imgsurfer.presentation.type.EmptyViewType
+import com.kakaobank.imgsurfer.util.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,6 +18,7 @@ class SearchViewModel @Inject constructor(private val searchRepository: SearchRe
     ViewModel() {
     val inputKeyword = MutableStateFlow("")
     private val validKeyword = MutableStateFlow("")
+    val searchState = MutableStateFlow(EmptyViewType.Init)
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val searchResult = validKeyword.flatMapLatest {

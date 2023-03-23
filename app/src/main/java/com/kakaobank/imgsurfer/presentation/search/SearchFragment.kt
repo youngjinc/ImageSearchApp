@@ -3,13 +3,13 @@ package com.kakaobank.imgsurfer.presentation.search
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.paging.LoadState
 import com.kakaobank.imgsurfer.R
 import com.kakaobank.imgsurfer.databinding.FragmentSearchBinding
 import com.kakaobank.imgsurfer.presentation.SearchResultPagingAdapter
 import com.kakaobank.imgsurfer.presentation.SearchViewModel
+import com.kakaobank.imgsurfer.presentation.type.EmptyViewType
 import com.kakaobank.imgsurfer.util.binding.BindingFragment
 import com.kakaobank.imgsurfer.util.extension.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,8 +42,10 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
         }
 
         searchAdapter.addLoadStateListener { loadState ->
-            binding.layoutEmptyView.root.isVisible =
-                loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached
+            if (loadState.source.refresh is LoadState.NotLoading && !loadState.source.refresh.endOfPaginationReached && searchAdapter.itemCount > 0)
+                viewModel.searchState.value = EmptyViewType.NotEmpty
+            else
+                viewModel.searchState.value = EmptyViewType.Empty
         }
     }
 

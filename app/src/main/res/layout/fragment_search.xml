@@ -8,6 +8,8 @@
         <variable
             name="viewModel"
             type="com.kakaobank.imgsurfer.presentation.SearchViewModel" />
+
+        <import type="com.kakaobank.imgsurfer.presentation.type.EmptyViewType" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -83,8 +85,8 @@
                 android:id="@+id/iv_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingHorizontal="@dimen/spacing_micro"
                 android:onClick="@{() -> viewModel.clearInputKeyword()}"
+                android:paddingHorizontal="@dimen/spacing_micro"
                 android:src="@drawable/ic_delete_circle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +100,7 @@
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="@dimen/spacing_base"
             android:clipToPadding="false"
-            android:paddingBottom="100dp"
+            android:paddingBottom="80dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_search_bar"
@@ -111,10 +113,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="78dp"
-            android:visibility="invisible"
-            app:description="@{@string/search_empty_view_description}"
+            app:description="@{viewModel.searchState == EmptyViewType.Init ? @string/search_init_view_description : @string/search_empty_view_description}"
             app:icon="@{@drawable/ic_search_circle}"
             app:layout_constraintTop_toBottomOf="@id/layout_search_bar"
-            app:title="@{@string/search_empty_view_title}" />
+            app:title="@{viewModel.searchState == EmptyViewType.Init ? @string/search_init_view_title : @string/search_empty_view_title}"
+            app:visibility="@{viewModel.searchState != EmptyViewType.NotEmpty}"
+            tools:visibility="gone" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
