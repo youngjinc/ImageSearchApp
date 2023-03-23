@@ -32,7 +32,7 @@
     </style>
 
     <style name="TextAppearance.B1" parent="">
-        <item name="android:fontFamily">@font/pretendard_r</item>
+        <item name="android:fontFamily">@font/pretendard_m</item>
         <item name="android:textSize">16dp</item>
     </style>
 
@@ -47,7 +47,7 @@
     </style>
 
     <style name="TextAppearance.D2" parent="">
-        <item name="android:fontFamily">@font/pretendard_r</item>
+        <item name="android:fontFamily">@font/pretendard_sb</item>
         <item name="android:textSize">10dp</item>
     </style>
 </resources>

@@ -19,6 +19,7 @@
             android:id="@+id/bnv_main"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:background="@drawable/background_bottom_nav"
             app:itemIconTint="@color/selector_bottom_navi_color"
             app:itemTextAppearanceActive="@style/TextAppearance.D2"
             app:itemTextAppearanceInactive="@style/TextAppearance.D2"
