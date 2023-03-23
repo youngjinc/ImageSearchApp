@@ -30,7 +30,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         when (menuId) {
             R.id.search -> replace<SearchFragment>(R.id.fcv_main)
             R.id.archive -> replace<ArchiveFragment>(R.id.fcv_main)
-            else -> KakaoLog.e(throwable = IllegalArgumentException("Not found menu item id"))
+            else -> KakaoLog.e("Not found menu item id")
         }
     }
 }

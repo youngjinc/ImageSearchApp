@@ -17,6 +17,4 @@ object KakaoLog {
     fun w(message: String) = Log.w(buildTag(), message)
 
     fun e(message: String) = Log.e(buildTag(), message)
-
-    fun e(message: String = "", throwable: Throwable) = Log.e(buildTag(), message, throwable)
 }
