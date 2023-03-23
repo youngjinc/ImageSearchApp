@@ -6,7 +6,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseImageSearch(
+data class ImageSearchDTO(
     @SerialName("thumbnail_url")
     val thumbnailUrl: String,
     val datetime: String,
