@@ -1,10 +1,8 @@
-package com.kakaobank.imgsurfer.presentation
+package com.kakaobank.imgsurfer.presentation.screen
 
 import android.os.Bundle
 import com.kakaobank.imgsurfer.R
 import com.kakaobank.imgsurfer.databinding.ActivityMainBinding
-import com.kakaobank.imgsurfer.presentation.archive.ArchiveFragment
-import com.kakaobank.imgsurfer.presentation.search.SearchFragment
 import com.kakaobank.imgsurfer.util.binding.BindingActivity
 import com.kakaobank.imgsurfer.util.KakaoLog
 import com.kakaobank.imgsurfer.util.extension.replace

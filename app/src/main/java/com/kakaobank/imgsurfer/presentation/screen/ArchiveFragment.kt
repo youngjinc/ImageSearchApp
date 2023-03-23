@@ -1,4 +1,4 @@
-package com.kakaobank.imgsurfer.presentation.archive
+package com.kakaobank.imgsurfer.presentation.screen
 
 import android.os.Bundle
 import android.view.View
@@ -6,8 +6,8 @@ import androidx.fragment.app.activityViewModels
 import com.kakaobank.imgsurfer.R
 import com.kakaobank.imgsurfer.databinding.FragmentArchiveBinding
 import com.kakaobank.imgsurfer.domain.model.Content
-import com.kakaobank.imgsurfer.presentation.ArchivedContentAdapter
 import com.kakaobank.imgsurfer.presentation.SearchViewModel
+import com.kakaobank.imgsurfer.presentation.adapter.ArchivedContentAdapter
 import com.kakaobank.imgsurfer.util.binding.BindingFragment
 import com.kakaobank.imgsurfer.util.extension.collectFlow
 

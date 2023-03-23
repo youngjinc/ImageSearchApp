@@ -1,4 +1,4 @@
-package com.kakaobank.imgsurfer.presentation.search
+package com.kakaobank.imgsurfer.presentation.screen
 
 import android.os.Bundle
 import android.view.View
@@ -8,8 +8,8 @@ import androidx.paging.LoadState
 import com.kakaobank.imgsurfer.R
 import com.kakaobank.imgsurfer.databinding.FragmentSearchBinding
 import com.kakaobank.imgsurfer.domain.model.Content
-import com.kakaobank.imgsurfer.presentation.SearchResultPagingAdapter
 import com.kakaobank.imgsurfer.presentation.SearchViewModel
+import com.kakaobank.imgsurfer.presentation.adapter.SearchResultPagingAdapter
 import com.kakaobank.imgsurfer.presentation.type.EmptyViewType
 import com.kakaobank.imgsurfer.util.binding.BindingFragment
 import com.kakaobank.imgsurfer.util.extension.collectFlow
