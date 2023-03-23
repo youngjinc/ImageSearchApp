@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import coil.load
-import com.google.android.material.imageview.ShapeableImageView
 import com.kakaobank.imgsurfer.util.extension.KakaoLog
 import java.time.Instant
 import java.time.LocalDateTime
@@ -39,12 +38,4 @@ fun TextView.setDateTime(dateTime: String) {
     } catch (e: DateTimeParseException) {
         KakaoLog.e(e.message ?: return)
     }
-}
-
-@BindingAdapter("radius")
-fun ShapeableImageView.setCornerRadius(radius: Float) {
-    val shapeAppearanceModel = this.shapeAppearanceModel.toBuilder()
-        .setAllCornerSizes(radius)
-        .build()
-    this.shapeAppearanceModel = shapeAppearanceModel
 }

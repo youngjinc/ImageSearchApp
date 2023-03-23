@@ -14,4 +14,10 @@
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <!-- Rounded Image View -->
+    <style name="Style.RoundedImageView.8" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8%</item>
+    </style>
 </resources>
