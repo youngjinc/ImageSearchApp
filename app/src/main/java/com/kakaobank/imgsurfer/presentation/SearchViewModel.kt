@@ -48,4 +48,6 @@ class SearchViewModel @Inject constructor( // TODO 클래스명 수정 필요
 
         _archivedContents.value = localStorage.contents
     }
+
+    fun isArchivedContent(content: Content?) = localStorage.isArchivedContent(content)
 }

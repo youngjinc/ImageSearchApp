@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kakaobank.imgsurfer.databinding.ItemContentBinding
 import com.kakaobank.imgsurfer.domain.model.Content
 
-class SearchResultPagingAdapter(private val onHeartClickListener: (Content?, Boolean) -> Unit) :
+class SearchResultPagingAdapter(
+    private val onHeartClickListener: (Content?, Boolean) -> Unit,
+    private val isArchivedContent: (Content?) -> Boolean,
+) :
     PagingDataAdapter<Content, SearchResultPagingAdapter.SearchResultViewHolder>(
         object : DiffUtil.ItemCallback<Content>() {
             override fun areItemsTheSame(oldItem: Content, newItem: Content): Boolean =
@@ -22,8 +25,13 @@ class SearchResultPagingAdapter(private val onHeartClickListener: (Content?, Boo
 
     class SearchResultViewHolder(private val binding: ItemContentBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: Content?, onHeartClickListener: (Content?, Boolean) -> Unit) {
+        fun onBind(
+            data: Content?,
+            onHeartClickListener: (Content?, Boolean) -> Unit,
+            isArchivedContent: (Content?) -> Boolean,
+        ) {
             data?.let { binding.content = it }
+            binding.ivHeart.isSelected = isArchivedContent(data)
             binding.ivHeart.setOnClickListener {
                 it.isSelected = !it.isSelected
                 onHeartClickListener(data, it.isSelected)
@@ -39,6 +47,6 @@ class SearchResultPagingAdapter(private val onHeartClickListener: (Content?, Boo
     }
 
     override fun onBindViewHolder(holder: SearchResultViewHolder, position: Int) {
-        holder.onBind(getItem(position), onHeartClickListener)
+        holder.onBind(getItem(position), onHeartClickListener, isArchivedContent)
     }
 }

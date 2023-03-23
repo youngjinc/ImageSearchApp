@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_search) {
     private val viewModel: SearchViewModel by activityViewModels()
-    private val searchAdapter = SearchResultPagingAdapter(::updateHeartState)
+    private lateinit var searchAdapter: SearchResultPagingAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,6 +32,7 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
     }
 
     private fun initLayout() {
+        searchAdapter = SearchResultPagingAdapter(::updateHeartState, viewModel::isArchivedContent)
         binding.rvSearch.adapter = searchAdapter
     }
 

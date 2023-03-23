@@ -51,6 +51,8 @@ class LocalDataSource @Inject constructor(
         this.contents = contents
     }
 
+    fun isArchivedContent(content: Content?) = contents.contains(content)
+
     companion object {
         private const val FILE_NAME = "kakaobank_preference"
         private const val KEY_ARCHIVED_CONTENTS = "archivedContents"
