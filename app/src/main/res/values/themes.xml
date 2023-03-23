@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.ImgSurfer" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
@@ -15,9 +15,25 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <!-- Rounded Image View -->
     <style name="Style.RoundedImageView.8" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8%</item>
+    </style>
+
+    <style name="Style.RecyclerView.GridLayout.Content" parent="">
+        <item name="android:layout_marginHorizontal">12dp</item>
+        <item name="android:layout_marginTop">@dimen/spacing_base</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:paddingBottom">80dp</item>
+        <item name="layoutManager">androidx.recyclerview.widget.GridLayoutManager</item>
+        <item name="spanCount">2</item>
+    </style>
+
+    <style name="Style.TextView.Title" parent="">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.H1</item>
+        <item name="android:textColor">@color/gray_700</item>
+        <item name="layoutManager">androidx.recyclerview.widget.GridLayoutManager</item>
+        <item name="spanCount">2</item>
     </style>
 </resources>
