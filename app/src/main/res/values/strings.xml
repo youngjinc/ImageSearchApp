@@ -12,4 +12,5 @@
 
     <string name="archive_empty_view_title">콘텐츠를 보관해 보세요.</string>
     <string name="archive_empty_view_description">다시보고 싶은 콘텐츠가 있다면,\n콘텐츠에서 하트를 눌러보세요.</string>
+    <string name="search_keyword_input_request_toast_message">검색어를 입력해 주세요.</string>
 </resources>

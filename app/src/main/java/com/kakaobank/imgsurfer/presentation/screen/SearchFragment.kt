@@ -13,6 +13,7 @@ import com.kakaobank.imgsurfer.presentation.adapter.SearchResultPagingAdapter
 import com.kakaobank.imgsurfer.presentation.type.EmptyViewType
 import com.kakaobank.imgsurfer.util.binding.BindingFragment
 import com.kakaobank.imgsurfer.util.extension.collectFlow
+import com.kakaobank.imgsurfer.util.extension.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,8 +39,11 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
 
     private fun addListener() {
         binding.etSearch.setOnEditorActionListener { keyword, id, _ ->
-            if (id == EditorInfo.IME_ACTION_DONE)
-                viewModel.searchContent(keyword.text.toString())
+            if (id == EditorInfo.IME_ACTION_DONE) {
+                if (keyword.text.toString().isBlank())
+                    showToast(getString(R.string.search_keyword_input_request_toast_message))
+                else viewModel.searchContent(keyword.text.toString())
+            }
             false
         }
 
