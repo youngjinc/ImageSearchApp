@@ -1,4 +1,4 @@
-package com.kakaobank.imgsurfer.util.extension
+package com.kakaobank.imgsurfer.util
 
 import android.util.Log
 
