@@ -33,7 +33,7 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
 
     private fun initLayout() {
         searchAdapter = SearchResultPagingAdapter(::updateHeartState, viewModel::isArchivedContent)
-        binding.rvSearch.adapter = searchAdapter
+        binding.rvSearchResult.adapter = searchAdapter
     }
 
     private fun addListener() {
