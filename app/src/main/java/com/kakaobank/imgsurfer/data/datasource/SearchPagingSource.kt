@@ -35,7 +35,7 @@ class SearchPagingSource(private val searchService: SearchService, private val k
                     }
             }
 
-            val contentList = imageList + videoList
+            val contentList = (imageList + videoList).sortedByDescending { it.dateTime }
             val prevKey = if (page == 1) null else page - 1
             val nextKey =
                 if (contentList.isEmpty() || (isEndImage && isEndVideo)) null else page + 1

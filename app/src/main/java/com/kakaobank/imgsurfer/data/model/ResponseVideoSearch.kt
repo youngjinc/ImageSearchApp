@@ -1,6 +1,7 @@
 package com.kakaobank.imgsurfer.data.model
 
 import com.kakaobank.imgsurfer.domain.model.Content
+import com.kakaobank.imgsurfer.util.extension.toLocalDatetime
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -11,5 +12,5 @@ data class ResponseVideoSearch(
     val datetime: String,
     val author: String,
 ) {
-    fun toContentList() = Content(thumbnailUrl, datetime, author)
+    fun toContentList() = Content(thumbnailUrl, datetime.toLocalDatetime(), author)
 }

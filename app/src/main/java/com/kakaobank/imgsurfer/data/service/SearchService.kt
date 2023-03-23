@@ -10,7 +10,7 @@ interface SearchService {
     @GET("search/image")
     suspend fun searchImage(
         @Query("query") keyword: String,
-        @Query("sort") sort: String? = null,
+        @Query("sort") sort: String = SORT_TYPE_RECENCY,
         @Query("page") page: Int? = null,
         @Query("size") size: Int? = null,
     ): ResponseBase<ResponseImageSearch>
@@ -18,8 +18,12 @@ interface SearchService {
     @GET("search/vclip")
     suspend fun searchVideo(
         @Query("query") keyword: String,
-        @Query("sort") sort: String? = null,
+        @Query("sort") sort: String = SORT_TYPE_RECENCY,
         @Query("page") page: Int? = null,
         @Query("size") size: Int? = null,
     ): ResponseBase<ResponseVideoSearch>
+
+    companion object {
+        private const val SORT_TYPE_RECENCY = "recency"
+    }
 }
