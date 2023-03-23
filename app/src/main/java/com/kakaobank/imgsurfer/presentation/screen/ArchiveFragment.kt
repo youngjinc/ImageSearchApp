@@ -18,6 +18,9 @@ class ArchiveFragment : BindingFragment<FragmentArchiveBinding>(R.layout.fragmen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
         initLayout()
         collectData()
     }
