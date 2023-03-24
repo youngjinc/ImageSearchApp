@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.kakaobank.imgsurfer.data.service.SearchService
 import com.kakaobank.imgsurfer.domain.model.Content
+import com.kakaobank.imgsurfer.util.KakaoLog
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -23,20 +24,8 @@ class SearchPagingSource(private val searchService: SearchService, private val k
 
             val page = params.key ?: 1
 
-            if (!isEndImage) { // TODO 예외처리 필요
-                searchService.searchImage(keyword = keyword, page = page, size = PAGE_SIZE)
-                    .let { response ->
-                        isEndImage = response.meta.isEnd
-                        imageList = response.documents.map { it.toContentList() }
-                    }
-            }
-            if (!isEndVideo) {
-                searchService.searchVideo(keyword = keyword, page = page, size = PAGE_SIZE)
-                    .let { response ->
-                        isEndVideo = response.meta.isEnd
-                        videoList = response.documents.map { it.toContentList() }
-                    }
-            }
+            if (!isEndImage) searchImage(page)
+            if (!isEndVideo) searchVideo(page)
 
             val currentContents = getLatestContentByPageSize()
             val prevKey = if (page == 1) null else page - 1
@@ -54,11 +43,36 @@ class SearchPagingSource(private val searchService: SearchService, private val k
         }
     }
 
+    private suspend fun searchImage(page: Int) {
+        runCatching {
+            searchService.searchImage(keyword = keyword, page = page, size = PAGE_SIZE)
+        }.onSuccess { response ->
+            isEndImage = response.meta.isEnd
+            imageList = response.documents.map { it.toContentList() }
+        }.onFailure {
+            isEndImage = true
+            imageList = emptyList()
+            it.message?.let { KakaoLog.e(it) }
+        }
+    }
+
+    private suspend fun searchVideo(page: Int) {
+        runCatching {
+            searchService.searchVideo(keyword = keyword, page = page, size = PAGE_SIZE)
+        }.onSuccess { response ->
+            isEndVideo = response.meta.isEnd
+            videoList = response.documents.map { it.toContentList() }
+        }.onFailure {
+            isEndVideo = true
+            videoList = emptyList()
+            it.message?.let { KakaoLog.e(it) }
+        }
+    }
+
     /** 페이지 사이즈 수만큼의 최신 콘텐츠 리스트를 반환하는 함수.
      * 이미지(30), 비디오(30)으로 총 콘텐츠 정보 60개를 불러왔을 때 최신순 정렬을 적용하여 30개를 PagingData로 내보내고,
      * 나머지 콘텐츠는 임시 저장소에 저장해두고 다음 페이지에 대한 이미지, 비디오 검색결과를 합해서 위 과정을 반복하여 최신순으로 두 리스트를 정렬한다.
      * 이미지(30) 중 가장 최신 이미지가, 비디오(30) 중 오래된 이미지보다 더 오래전이라면 비디오(30)을 PagingData로 내보내기 위함.*/
-
     private fun getLatestContentByPageSize(): List<Content> {
         tempContents.addAll(imageList + videoList)
         tempContents.sortByDescending { it.dateTime }
