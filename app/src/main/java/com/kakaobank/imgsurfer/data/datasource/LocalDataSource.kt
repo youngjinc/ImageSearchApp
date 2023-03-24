@@ -51,6 +51,7 @@ class LocalDataSource @Inject constructor(
         this.contents = contents
     }
 
+    /** 검색 결과로 전달된 콘텐츠가 보관함에 저장되어있는지 확인하는 함수 */
     fun isArchivedContent(content: Content?) = contents.contains(content)
 
     companion object {

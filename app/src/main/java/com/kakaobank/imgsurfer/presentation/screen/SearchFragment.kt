@@ -76,6 +76,7 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
         else viewModel.searchContent(keyword)
     }
 
+    /** 검색 결과 콘텐츠의 보관 상태를 업데이트. 보관 -> 보관해제, 보관해제 -> 보관 처리함. */
     private fun updateHeartState(content: Content?, isSelected: Boolean) {
         if (content == null) return
         viewModel.updateHeartState(content, isSelected)

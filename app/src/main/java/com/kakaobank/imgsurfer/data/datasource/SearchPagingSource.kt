@@ -13,14 +13,17 @@ class SearchPagingSource(private val searchService: SearchService, private val k
     private var isEndVideo: Boolean = false
     private var isEndTemp: Boolean = false
     private var tempContents = mutableListOf<Content>()
+    lateinit var imageList: List<Content>
+    lateinit var videoList: List<Content>
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Content> {
         return try {
-            val page = params.key ?: 1
-            var imageList: List<Content> = emptyList()
-            var videoList: List<Content> = emptyList()
+            imageList = emptyList()
+            videoList = emptyList()
 
-            if (!isEndImage) {
+            val page = params.key ?: 1
+
+            if (!isEndImage) { // TODO 예외처리 필요
                 searchService.searchImage(keyword = keyword, page = page, size = PAGE_SIZE)
                     .let { response ->
                         isEndImage = response.meta.isEnd
@@ -35,25 +38,7 @@ class SearchPagingSource(private val searchService: SearchService, private val k
                     }
             }
 
-            tempContents.addAll(imageList + videoList)
-            if (isEndImage && imageList.isNotEmpty()) imageList = emptyList()
-            if (isEndVideo && videoList.isNotEmpty()) videoList = emptyList()
-
-            tempContents.sortByDescending { it.dateTime }
-
-            val currentContents =
-                if (tempContents.size >= PAGE_SIZE) {
-                    tempContents.subList(0, PAGE_SIZE - 1)
-                } else {
-                    isEndTemp = true
-                    tempContents
-                }
-
-            tempContents =
-                if (currentContents.size == PAGE_SIZE)
-                    tempContents.subList(PAGE_SIZE, tempContents.size - 1)
-                else mutableListOf()
-
+            val currentContents = getLatestContentByPageSize()
             val prevKey = if (page == 1) null else page - 1
             val nextKey = if (isEndTemp) null else page + 1
 
@@ -67,6 +52,33 @@ class SearchPagingSource(private val searchService: SearchService, private val k
         } catch (exception: HttpException) {
             LoadResult.Error(exception)
         }
+    }
+
+    /** 페이지 사이즈 수만큼의 최신 콘텐츠 리스트를 반환하는 함수.
+     * 이미지(30), 비디오(30)으로 총 콘텐츠 정보 60개를 불러왔을 때 최신순 정렬을 적용하여 30개를 PagingData로 내보내고,
+     * 나머지 콘텐츠는 임시 저장소에 저장해두고 다음 페이지에 대한 이미지, 비디오 검색결과를 합해서 위 과정을 반복하여 최신순으로 두 리스트를 정렬한다.
+     * 이미지(30) 중 가장 최신 이미지가, 비디오(30) 중 오래된 이미지보다 더 오래전이라면 비디오(30)을 PagingData로 내보내기 위함.*/
+
+    private fun getLatestContentByPageSize(): List<Content> {
+        tempContents.addAll(imageList + videoList)
+        tempContents.sortByDescending { it.dateTime }
+
+        // 현재 PagingData로 내보낼 최신 콘텐츠로, 갯수는 페이지 사이즈에 해당
+        val currentContents =
+            if (tempContents.size >= PAGE_SIZE) {
+                tempContents.subList(0, PAGE_SIZE - 1)
+            } else {
+                isEndTemp = true
+                tempContents
+            }
+
+        // 내보낼 최신 콘텐츠를 기존의 임시 저장소(tempContents)에서 제거
+        tempContents =
+            if (currentContents.size == PAGE_SIZE)
+                tempContents.subList(PAGE_SIZE, tempContents.size - 1)
+            else mutableListOf()
+
+        return currentContents
     }
 
     override fun getRefreshKey(state: PagingState<Int, Content>): Int? =
