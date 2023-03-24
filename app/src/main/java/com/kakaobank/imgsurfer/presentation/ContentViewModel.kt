@@ -21,12 +21,11 @@ class ContentViewModel @Inject constructor(
     private val localStorage: LocalDataSource,
 ) : ViewModel() {
     val inputKeyword = MutableStateFlow("")
-    private val _validKeyword = MutableStateFlow("")
-    val validKeyword get() = _validKeyword.asStateFlow()
+    private val validKeyword = MutableStateFlow("")
     val searchState = MutableStateFlow(EmptyViewType.Init)
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val searchResult = _validKeyword.flatMapLatest {
+    val searchResult = validKeyword.flatMapLatest {
         if (it.isNotBlank()) searchRepository.searchContent(it)
         else flow {}
     }.cachedIn(viewModelScope)
@@ -35,7 +34,7 @@ class ContentViewModel @Inject constructor(
     val archivedContents get() = _archivedContents.asStateFlow()
 
     fun searchContent(keyword: String) {
-        _validKeyword.value = keyword
+        validKeyword.value = keyword
     }
 
     /** 검색 키워드가 지워진 상태인 경우, 검색바 외부영역을 터치했을 때 검색바에 키워드 다시 보여주기 */
