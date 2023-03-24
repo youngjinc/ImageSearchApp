@@ -57,6 +57,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0'
     implementation 'androidx.security:security-crypto:1.0.0'
     implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
+    implementation 'androidx.core:core-splashscreen:1.0.0'
 
     // Coroutine
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'

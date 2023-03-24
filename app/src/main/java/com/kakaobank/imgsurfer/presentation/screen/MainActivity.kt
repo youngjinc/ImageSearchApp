@@ -1,16 +1,18 @@
 package com.kakaobank.imgsurfer.presentation.screen
 
 import android.os.Bundle
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.kakaobank.imgsurfer.R
 import com.kakaobank.imgsurfer.databinding.ActivityMainBinding
-import com.kakaobank.imgsurfer.util.binding.BindingActivity
 import com.kakaobank.imgsurfer.util.KakaoLog
+import com.kakaobank.imgsurfer.util.binding.BindingActivity
 import com.kakaobank.imgsurfer.util.extension.replace
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
 
         changeFragment(R.id.search)
