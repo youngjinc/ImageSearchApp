@@ -16,16 +16,18 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor( // TODO 클래스명 수정 필요
+class SearchViewModel @Inject constructor(
+    // TODO 클래스명 수정 필요
     private val searchRepository: SearchRepository,
     private val localStorage: LocalDataSource,
 ) : ViewModel() {
     val inputKeyword = MutableStateFlow("")
-    private val validKeyword = MutableStateFlow("")
+    private val _validKeyword = MutableStateFlow("")
+    val validKeyword get() = _validKeyword.asStateFlow()
     val searchState = MutableStateFlow(EmptyViewType.Init)
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val searchResult = validKeyword.flatMapLatest {
+    val searchResult = _validKeyword.flatMapLatest {
         if (it.isNotBlank()) searchRepository.searchContent(it)
         else flow {}
     }.cachedIn(viewModelScope)
@@ -34,7 +36,13 @@ class SearchViewModel @Inject constructor( // TODO 클래스명 수정 필요
     val archivedContents get() = _archivedContents.asStateFlow()
 
     fun searchContent(keyword: String) {
-        validKeyword.value = keyword
+        _validKeyword.value = keyword
+    }
+
+    /** 검색 키워드가 지워진 상태인 경우, 검색바 외부영역을 터치했을 때 검색바에 키워드 다시 보여주기 */
+    fun reloadInputKeyword() {
+        if (inputKeyword.value != validKeyword.value && validKeyword.value.isNotEmpty())
+            inputKeyword.value = validKeyword.value
     }
 
     fun clearInputKeyword() {
