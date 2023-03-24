@@ -6,7 +6,7 @@ import androidx.paging.cachedIn
 import com.kakaobank.imgsurfer.data.datasource.LocalDataSource
 import com.kakaobank.imgsurfer.domain.model.Content
 import com.kakaobank.imgsurfer.domain.repository.SearchRepository
-import com.kakaobank.imgsurfer.presentation.type.EmptyViewType
+import com.kakaobank.imgsurfer.presentation.type.UiStateType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +22,7 @@ class ContentViewModel @Inject constructor(
 ) : ViewModel() {
     val inputKeyword = MutableStateFlow("")
     private val validKeyword = MutableStateFlow("")
-    val searchState = MutableStateFlow(EmptyViewType.Init)
+    val searchState = MutableStateFlow(UiStateType.INIT)
     val hasFocusingSearchBar = MutableStateFlow(false)
 
     @OptIn(ExperimentalCoroutinesApi::class)

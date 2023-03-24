@@ -9,7 +9,7 @@
             name="viewModel"
             type="com.kakaobank.imgsurfer.presentation.ContentViewModel" />
 
-        <import type="com.kakaobank.imgsurfer.presentation.type.EmptyViewType" />
+        <import type="com.kakaobank.imgsurfer.presentation.type.UiStateType" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -96,11 +96,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="78dp"
-            app:description="@{viewModel.searchState == EmptyViewType.Init ? @string/search_init_view_description : @string/search_empty_view_description}"
+            app:description="@{viewModel.searchState == UiStateType.INIT ? @string/search_init_view_description : @string/search_empty_view_description}"
             app:icon="@{@drawable/ic_search_circle}"
             app:layout_constraintTop_toBottomOf="@id/layout_search_bar"
-            app:title="@{viewModel.searchState == EmptyViewType.Init ? @string/search_init_view_title : @string/search_empty_view_title}"
-            app:visibility="@{viewModel.searchState != EmptyViewType.NotEmpty}"
+            app:title="@{viewModel.searchState == UiStateType.INIT ? @string/search_init_view_title : @string/search_empty_view_title}"
+            app:visibility="@{viewModel.searchState == UiStateType.INIT || viewModel.searchState == UiStateType.INIT}"
             tools:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView

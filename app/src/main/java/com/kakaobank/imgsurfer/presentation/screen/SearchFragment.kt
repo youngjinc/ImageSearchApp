@@ -10,7 +10,7 @@ import com.kakaobank.imgsurfer.databinding.FragmentSearchBinding
 import com.kakaobank.imgsurfer.domain.model.Content
 import com.kakaobank.imgsurfer.presentation.ContentViewModel
 import com.kakaobank.imgsurfer.presentation.adapter.SearchResultPagingAdapter
-import com.kakaobank.imgsurfer.presentation.type.EmptyViewType
+import com.kakaobank.imgsurfer.presentation.type.UiStateType
 import com.kakaobank.imgsurfer.util.binding.BindingFragment
 import com.kakaobank.imgsurfer.util.extension.collectFlow
 import com.kakaobank.imgsurfer.util.extension.showKeyboard
@@ -59,9 +59,11 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
 
         searchAdapter.addLoadStateListener { loadState ->
             if (loadState.source.refresh is LoadState.NotLoading && !loadState.source.refresh.endOfPaginationReached && searchAdapter.itemCount > 0)
-                viewModel.searchState.value = EmptyViewType.NotEmpty
+                viewModel.searchState.value = UiStateType.SUCCESS
+            else if (loadState.source.refresh is LoadState.Loading)
+                viewModel.searchState.value = UiStateType.LOADING
             else
-                viewModel.searchState.value = EmptyViewType.Empty
+                viewModel.searchState.value = UiStateType.EMPTY
         }
     }
 
