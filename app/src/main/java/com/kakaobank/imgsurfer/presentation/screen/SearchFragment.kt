@@ -53,6 +53,10 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
             false
         }
 
+        binding.etSearch.setOnFocusChangeListener { _, hasFocus ->
+            viewModel.hasFocusingSearchBar.value = hasFocus
+        }
+
         searchAdapter.addLoadStateListener { loadState ->
             if (loadState.source.refresh is LoadState.NotLoading && !loadState.source.refresh.endOfPaginationReached && searchAdapter.itemCount > 0)
                 viewModel.searchState.value = EmptyViewType.NotEmpty

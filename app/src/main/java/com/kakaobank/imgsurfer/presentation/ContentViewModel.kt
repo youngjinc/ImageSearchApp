@@ -23,6 +23,7 @@ class ContentViewModel @Inject constructor(
     val inputKeyword = MutableStateFlow("")
     private val validKeyword = MutableStateFlow("")
     val searchState = MutableStateFlow(EmptyViewType.Init)
+    val hasFocusingSearchBar = MutableStateFlow(false)
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val searchResult = validKeyword.flatMapLatest {
