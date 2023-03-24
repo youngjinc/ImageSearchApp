@@ -8,7 +8,7 @@ import androidx.paging.LoadState
 import com.kakaobank.imgsurfer.R
 import com.kakaobank.imgsurfer.databinding.FragmentSearchBinding
 import com.kakaobank.imgsurfer.domain.model.Content
-import com.kakaobank.imgsurfer.presentation.SearchViewModel
+import com.kakaobank.imgsurfer.presentation.ContentViewModel
 import com.kakaobank.imgsurfer.presentation.adapter.SearchResultPagingAdapter
 import com.kakaobank.imgsurfer.presentation.type.EmptyViewType
 import com.kakaobank.imgsurfer.util.binding.BindingFragment
@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_search) {
-    private val viewModel: SearchViewModel by activityViewModels()
+    private val viewModel: ContentViewModel by activityViewModels()
     private lateinit var searchAdapter: SearchResultPagingAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

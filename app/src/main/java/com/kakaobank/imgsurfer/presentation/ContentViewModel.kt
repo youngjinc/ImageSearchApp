@@ -16,8 +16,7 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(
-    // TODO 클래스명 수정 필요
+class ContentViewModel @Inject constructor(
     private val searchRepository: SearchRepository,
     private val localStorage: LocalDataSource,
 ) : ViewModel() {
