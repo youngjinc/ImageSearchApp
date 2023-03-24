@@ -74,8 +74,11 @@ class SearchPagingSource(private val searchService: SearchService, private val k
      * 나머지 콘텐츠는 임시 저장소에 저장해두고 다음 페이지에 대한 이미지, 비디오 검색결과를 합해서 위 과정을 반복하여 최신순으로 두 리스트를 정렬한다.
      * 이미지(30) 중 가장 최신 이미지가, 비디오(30) 중 오래된 이미지보다 더 오래전이라면 비디오(30)을 PagingData로 내보내기 위함.*/
     private fun getLatestContentByPageSize(): List<Content> {
-        tempContents.addAll(imageList + videoList)
-        tempContents.sortByDescending { it.dateTime }
+        // 이미지와 동영상 중 어느 하나라도 검색 결과가 존재한다면 임시 저장소에 추가하고, 임시 저장소(tempContents)의 요소를 최신순으로 정렬
+        if (imageList.isNotEmpty() || videoList.isNotEmpty()) {
+            tempContents.addAll(imageList + videoList)
+            tempContents.sortByDescending { it.dateTime }
+        }
 
         // 현재 PagingData로 내보낼 최신 콘텐츠로, 갯수는 페이지 사이즈에 해당
         val currentContents =
@@ -86,7 +89,7 @@ class SearchPagingSource(private val searchService: SearchService, private val k
                 tempContents
             }
 
-        // 내보낼 최신 콘텐츠를 기존의 임시 저장소(tempContents)에서 제거
+        // 내보낼 최신 콘텐츠를 기존의 임시 저장소에서 제거
         tempContents =
             if (currentContents.size == PAGE_SIZE)
                 tempContents.subList(PAGE_SIZE, tempContents.size - 1)
