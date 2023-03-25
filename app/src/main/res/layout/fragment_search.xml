@@ -100,7 +100,7 @@
             app:icon="@{@drawable/ic_search_circle}"
             app:layout_constraintTop_toBottomOf="@id/layout_search_bar"
             app:title="@{viewModel.searchState == UiStateType.INIT ? @string/search_init_view_title : @string/search_empty_view_title}"
-            app:visibility="@{viewModel.searchState == UiStateType.INIT || viewModel.searchState == UiStateType.INIT}"
+            app:visibility="@{viewModel.searchState == UiStateType.INIT || viewModel.searchState == UiStateType.EMPTY}"
             tools:visibility="gone" />
 
         <com.airbnb.lottie.LottieAnimationView
@@ -122,7 +122,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_search_bar"
-            app:visibility="@{viewModel.searchState != UiStateType.LOADING}"
+            app:visibility="@{viewModel.searchState == UiStateType.SUCCESS}"
             tools:listitem="@layout/item_content" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

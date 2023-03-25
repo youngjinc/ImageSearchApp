@@ -22,7 +22,8 @@ class ContentViewModel @Inject constructor(
 ) : ViewModel() {
     val inputKeyword = MutableStateFlow("")
     private val validKeyword = MutableStateFlow("")
-    val searchState = MutableStateFlow(UiStateType.INIT)
+    private val _searchState = MutableStateFlow(UiStateType.INIT)
+    val searchState get() = _searchState.asStateFlow()
     val hasFocusingSearchBar = MutableStateFlow(false)
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -57,4 +58,8 @@ class ContentViewModel @Inject constructor(
     }
 
     fun isArchivedContent(content: Content?) = localStorage.isArchivedContent(content)
+
+    fun setSearchState(searchState: UiStateType) {
+        this._searchState.value = searchState
+    }
 }

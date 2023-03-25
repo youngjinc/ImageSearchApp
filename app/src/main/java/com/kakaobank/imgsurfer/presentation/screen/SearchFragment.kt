@@ -58,12 +58,14 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
         }
 
         searchAdapter.addLoadStateListener { loadState ->
-            if (loadState.source.refresh is LoadState.NotLoading && !loadState.source.refresh.endOfPaginationReached && searchAdapter.itemCount > 0)
-                viewModel.searchState.value = UiStateType.SUCCESS
-            else if (loadState.source.refresh is LoadState.Loading)
-                viewModel.searchState.value = UiStateType.LOADING
-            else
-                viewModel.searchState.value = UiStateType.EMPTY
+            when (loadState.source.refresh) {
+                is LoadState.Loading -> viewModel.setSearchState(UiStateType.LOADING)
+                is LoadState.NotLoading -> {
+                    if (searchAdapter.itemCount > 0) viewModel.setSearchState(UiStateType.SUCCESS)
+                    else viewModel.setSearchState(UiStateType.EMPTY)
+                }
+                is LoadState.Error -> viewModel.setSearchState(UiStateType.ERROR)
+            }
         }
     }
 
