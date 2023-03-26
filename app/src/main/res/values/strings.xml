@@ -3,7 +3,7 @@
 
     <string name="menu_search">검색</string>
     <string name="menu_archive">보관함</string>
-    <string name="search_bar_hint">ex) 뉴진스 Ditto</string>
+    <string name="search_bar_hint">ex) 뉴진스</string>
 
     <string name="search_init_view_title">이미지나 동영상을 검색해 보세요</string>
     <string name="search_init_view_description">찾고 싶은 이미지나 동영상을\nImg Surfer에 검색해 보세요.</string>
