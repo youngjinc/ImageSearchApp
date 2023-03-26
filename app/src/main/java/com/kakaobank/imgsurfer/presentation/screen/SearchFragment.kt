@@ -12,6 +12,7 @@ import com.kakaobank.imgsurfer.domain.model.Content
 import com.kakaobank.imgsurfer.presentation.ContentViewModel
 import com.kakaobank.imgsurfer.presentation.adapter.SearchResultPagingAdapter
 import com.kakaobank.imgsurfer.presentation.type.UiStateType
+import com.kakaobank.imgsurfer.presentation.util.NetworkManager
 import com.kakaobank.imgsurfer.presentation.util.binding.BindingFragment
 import com.kakaobank.imgsurfer.presentation.util.extension.collectFlow
 import com.kakaobank.imgsurfer.presentation.util.extension.showKeyboard
@@ -48,7 +49,9 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
 
         binding.etSearch.setOnEditorActionListener { keyword, id, _ ->
             if (id == EditorInfo.IME_ACTION_DONE) {
-                searchContent(keyword.text.toString())
+                if (NetworkManager.checkNetworkState(requireContext()))
+                    searchContent(keyword.text.toString())
+                else viewModel.setSearchState(UiStateType.ERROR)
                 binding.etSearch.clearFocus()
             }
             false
