@@ -1,5 +1,6 @@
 package com.kakaobank.imgsurfer.presentation.screen
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -34,7 +35,9 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
     }
 
     private fun initLayout() {
-        searchAdapter = SearchResultPagingAdapter(::updateHeartState, viewModel::isArchivedContent)
+        searchAdapter = SearchResultPagingAdapter(::updateHeartState,
+            viewModel::isArchivedContent,
+            ::moveToDetail)
         binding.rvSearchResult.adapter = searchAdapter
     }
 
@@ -71,7 +74,7 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
 
     private fun collectData() {
         collectFlow(viewModel.searchResult) {
-            searchAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+            searchAdapter.submitData(it)
         }
     }
 
@@ -84,5 +87,14 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
     private fun updateHeartState(content: Content?, isSelected: Boolean) {
         if (content == null) return
         viewModel.updateHeartState(content, isSelected)
+    }
+
+    private fun moveToDetail(content: Content) {
+        Intent(requireContext(), ContentDetailActivity::class.java).apply {
+            putExtra(ContentDetailActivity.ARG_TITLE, content.source)
+            putExtra(ContentDetailActivity.ARG_IMAGE_URL, content.imageUrl)
+        }.also {
+            startActivity(it)
+        }
     }
 }

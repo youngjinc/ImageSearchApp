@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kakaobank.imgsurfer.databinding.ItemArchiveBinding
 import com.kakaobank.imgsurfer.domain.model.Content
 
-class ArchivedContentAdapter(private val onHeartClickListener: (Content?, Boolean) -> Unit) :
+class ArchivedContentAdapter(
+    private val onHeartClickListener: (Content?, Boolean) -> Unit, // TODO 프로퍼티명 수정 필요
+    private val moveToDetail: (Content) -> Unit,
+) :
     ListAdapter<Content, ArchivedContentAdapter.ArchivedContentViewHolder>(
         object : DiffUtil.ItemCallback<Content>() {
             override fun areItemsTheSame(oldItem: Content, newItem: Content): Boolean =
@@ -22,12 +25,19 @@ class ArchivedContentAdapter(private val onHeartClickListener: (Content?, Boolea
 
     class ArchivedContentViewHolder(private val binding: ItemArchiveBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: Content, onHeartClickListener: (Content?, Boolean) -> Unit) {
+        fun onBind(
+            data: Content,
+            onHeartClickListener: (Content?, Boolean) -> Unit,
+            moveToDetail: (Content) -> Unit,
+        ) {
             data.let { binding.content = it }
             binding.ivHeart.isSelected = true
             binding.ivHeart.setOnClickListener {
                 it.isSelected = !it.isSelected
                 onHeartClickListener(data, it.isSelected)
+            }
+            binding.root.setOnClickListener {
+                moveToDetail(data)
             }
         }
     }
@@ -40,6 +50,6 @@ class ArchivedContentAdapter(private val onHeartClickListener: (Content?, Boolea
     }
 
     override fun onBindViewHolder(holder: ArchivedContentViewHolder, position: Int) {
-        holder.onBind(currentList[position], onHeartClickListener)
+        holder.onBind(currentList[position], onHeartClickListener, moveToDetail)
     }
 }

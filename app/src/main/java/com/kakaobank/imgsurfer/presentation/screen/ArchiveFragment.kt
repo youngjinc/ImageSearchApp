@@ -1,5 +1,6 @@
 package com.kakaobank.imgsurfer.presentation.screen
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -8,12 +9,14 @@ import com.kakaobank.imgsurfer.databinding.FragmentArchiveBinding
 import com.kakaobank.imgsurfer.domain.model.Content
 import com.kakaobank.imgsurfer.presentation.ContentViewModel
 import com.kakaobank.imgsurfer.presentation.adapter.ArchivedContentAdapter
+import com.kakaobank.imgsurfer.presentation.screen.ContentDetailActivity.Companion.ARG_IMAGE_URL
+import com.kakaobank.imgsurfer.presentation.screen.ContentDetailActivity.Companion.ARG_TITLE
 import com.kakaobank.imgsurfer.util.binding.BindingFragment
 import com.kakaobank.imgsurfer.util.extension.collectFlow
 
 class ArchiveFragment : BindingFragment<FragmentArchiveBinding>(R.layout.fragment_archive) {
     private val viewModel: ContentViewModel by activityViewModels()
-    private val adapter = ArchivedContentAdapter(::updateHeartState)
+    private val adapter = ArchivedContentAdapter(::updateHeartState, ::moveToDetail)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,5 +41,14 @@ class ArchiveFragment : BindingFragment<FragmentArchiveBinding>(R.layout.fragmen
     private fun updateHeartState(content: Content?, isSelected: Boolean) {
         if (content == null) return
         viewModel.updateHeartState(content, isSelected)
+    }
+
+    private fun moveToDetail(content: Content) {
+        Intent(requireContext(), ContentDetailActivity::class.java).apply {
+            putExtra(ARG_TITLE, content.source)
+            putExtra(ARG_IMAGE_URL, content.imageUrl)
+        }.also {
+            startActivity(it)
+        }
     }
 }
