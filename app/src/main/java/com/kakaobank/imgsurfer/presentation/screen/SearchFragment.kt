@@ -43,9 +43,7 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
 
     private fun addListener() {
         binding.root.setOnClickListener {
-            viewModel.reloadInputKeyword()
-            requireContext().showKeyboard(it, false)
-            binding.etSearch.clearFocus()
+            clearFocus()
         }
 
         binding.etSearch.setOnEditorActionListener { keyword, id, _ ->
@@ -96,7 +94,16 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
                 content.imageUrl
                     ?: content.thumbnailUrl) // 동영상은 원본 이미지 url을 받아올 수 없기 때문에 디테일뷰에서 thumbnailUrl을 보여줌.
         }.also {
+            clearFocus()
             startActivity(it)
         }
+    }
+
+    /** 커서에 포커스가 있는 경우 포커스를 해제해면서 키워드가 일부 지워진 경우, 키워드를 복구하고 키보드를 내리는 함수. */
+    private fun clearFocus() {
+        if (!binding.etSearch.hasFocus()) return
+        binding.etSearch.clearFocus()
+        viewModel.reloadInputKeyword()
+        requireContext().showKeyboard(binding.root, false)
     }
 }
