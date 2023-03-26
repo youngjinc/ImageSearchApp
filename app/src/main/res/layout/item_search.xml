@@ -10,7 +10,6 @@
             type="com.kakaobank.imgsurfer.domain.model.Content" />
     </data>
 
-    <!-- 파일명 변경 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.kakaobank.imgsurfer.databinding.ItemContentBinding
+import com.kakaobank.imgsurfer.databinding.ItemSearchBinding
 import com.kakaobank.imgsurfer.domain.model.Content
 
 class SearchResultPagingAdapter(
@@ -23,7 +23,7 @@ class SearchResultPagingAdapter(
     ) {
     private lateinit var inflater: LayoutInflater
 
-    class SearchResultViewHolder(private val binding: ItemContentBinding) :
+    class SearchResultViewHolder(private val binding: ItemSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(
             data: Content?,
@@ -43,7 +43,7 @@ class SearchResultPagingAdapter(
         if (!::inflater.isInitialized)
             inflater = LayoutInflater.from(parent.context)
 
-        return SearchResultViewHolder(ItemContentBinding.inflate(inflater, parent, false))
+        return SearchResultViewHolder(ItemSearchBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: SearchResultViewHolder, position: Int) {
