@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.databinding.BindingAdapter
 import coil.load
+import com.kakaobank.imgsurfer.R
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -15,7 +16,9 @@ import java.util.*
 
 @BindingAdapter("image")
 fun ImageView.setImage(imageUrl: String) {
-    load(imageUrl)
+    load(imageUrl) {
+        placeholder(R.color.gray_100)
+    }
 }
 
 @BindingAdapter("visibility")

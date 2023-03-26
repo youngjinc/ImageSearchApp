@@ -5,6 +5,7 @@ import coil.load
 import com.kakaobank.imgsurfer.R
 import com.kakaobank.imgsurfer.databinding.ActivityContentDetailBinding
 import com.kakaobank.imgsurfer.presentation.util.binding.BindingActivity
+import com.kakaobank.imgsurfer.presentation.util.setImage
 
 class ContentDetailActivity :
     BindingActivity<ActivityContentDetailBinding>(R.layout.activity_content_detail) {
@@ -18,7 +19,7 @@ class ContentDetailActivity :
     private fun initLayout() {
         with(intent) {
             getStringExtra(ARG_TITLE)?.let { binding.tvTitle.text = it }
-            getStringExtra(ARG_IMAGE_URL)?.let { binding.ivContent.load(it) }
+            getStringExtra(ARG_IMAGE_URL)?.let { binding.ivContent.setImage(it) }
         }
     }
 
