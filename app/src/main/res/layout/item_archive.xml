@@ -10,11 +10,10 @@
             type="com.kakaobank.imgsurfer.domain.model.Content" />
     </data>
 
-    <!-- 파일명 변경 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/spacing_micro"
+        android:paddingHorizontal="2dp"
         android:paddingBottom="20dp">
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -49,24 +48,10 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{content.source}"
-            android:textAppearance="@style/TextAppearance.H6"
+            android:textAppearance="@style/TextAppearance.H7"
             android:textColor="@color/gray_700"
             app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
             app:visibility="@{!content.source.empty}"
             tools:text="뉴진스" />
-
-        <TextView
-            android:id="@+id/tv_datetime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textAppearance="@style/TextAppearance.D1"
-            android:textColor="@color/gray_300"
-            app:dateTime="@{content.dateTime}"
-            app:layoutMarginTop="@{content.source.blank == true ? @dimen/spacing_small : @dimen/spacing_micro}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            tools:text="23. 3. 19. 오전 11:30" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

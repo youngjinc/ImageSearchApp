@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.kakaobank.imgsurfer.databinding.ItemContentBinding
+import com.kakaobank.imgsurfer.databinding.ItemArchiveBinding
 import com.kakaobank.imgsurfer.domain.model.Content
 
 class ArchivedContentAdapter(private val onHeartClickListener: (Content?, Boolean) -> Unit) :
@@ -20,7 +20,7 @@ class ArchivedContentAdapter(private val onHeartClickListener: (Content?, Boolea
     ) {
     private lateinit var inflater: LayoutInflater
 
-    class ArchivedContentViewHolder(private val binding: ItemContentBinding) :
+    class ArchivedContentViewHolder(private val binding: ItemArchiveBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: Content, onHeartClickListener: (Content?, Boolean) -> Unit) {
             data.let { binding.content = it }
@@ -36,7 +36,7 @@ class ArchivedContentAdapter(private val onHeartClickListener: (Content?, Boolea
         if (!::inflater.isInitialized)
             inflater = LayoutInflater.from(parent.context)
 
-        return ArchivedContentViewHolder(ItemContentBinding.inflate(inflater, parent, false))
+        return ArchivedContentViewHolder(ItemArchiveBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: ArchivedContentViewHolder, position: Int) {
