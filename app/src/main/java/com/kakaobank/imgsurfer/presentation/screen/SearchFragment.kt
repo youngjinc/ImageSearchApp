@@ -12,10 +12,10 @@ import com.kakaobank.imgsurfer.domain.model.Content
 import com.kakaobank.imgsurfer.presentation.ContentViewModel
 import com.kakaobank.imgsurfer.presentation.adapter.SearchResultPagingAdapter
 import com.kakaobank.imgsurfer.presentation.type.UiStateType
-import com.kakaobank.imgsurfer.util.binding.BindingFragment
-import com.kakaobank.imgsurfer.util.extension.collectFlow
-import com.kakaobank.imgsurfer.util.extension.showKeyboard
-import com.kakaobank.imgsurfer.util.extension.showToast
+import com.kakaobank.imgsurfer.presentation.util.binding.BindingFragment
+import com.kakaobank.imgsurfer.presentation.util.extension.collectFlow
+import com.kakaobank.imgsurfer.presentation.util.extension.showKeyboard
+import com.kakaobank.imgsurfer.presentation.util.extension.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.kakaobank.imgsurfer.util.extension
+package com.kakaobank.imgsurfer.presentation.util.extension
 
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity

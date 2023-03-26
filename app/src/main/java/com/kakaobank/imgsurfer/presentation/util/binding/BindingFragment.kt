@@ -1,4 +1,4 @@
-package com.kakaobank.imgsurfer.util.binding
+package com.kakaobank.imgsurfer.presentation.util.binding
 
 import android.os.Bundle
 import android.view.LayoutInflater

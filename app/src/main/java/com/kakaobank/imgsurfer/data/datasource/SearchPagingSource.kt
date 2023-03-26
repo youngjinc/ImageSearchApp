@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.kakaobank.imgsurfer.data.service.SearchService
 import com.kakaobank.imgsurfer.domain.model.Content
-import com.kakaobank.imgsurfer.util.KakaoLog
+import com.kakaobank.imgsurfer.data.util.KakaoLog
 import retrofit2.HttpException
 import java.io.IOException
 

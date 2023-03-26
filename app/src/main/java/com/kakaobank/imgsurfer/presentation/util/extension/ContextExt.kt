@@ -1,4 +1,4 @@
-package com.kakaobank.imgsurfer.util.extension
+package com.kakaobank.imgsurfer.presentation.util.extension
 
 import android.app.Activity
 import android.content.Context

@@ -1,4 +1,4 @@
-package com.kakaobank.imgsurfer.util.extension
+package com.kakaobank.imgsurfer.presentation.util.extension
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment

@@ -1,4 +1,4 @@
-package com.kakaobank.imgsurfer.util
+package com.kakaobank.imgsurfer.presentation.util
 
 import android.view.View
 import android.view.ViewGroup

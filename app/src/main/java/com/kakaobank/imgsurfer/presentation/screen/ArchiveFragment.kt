@@ -11,8 +11,8 @@ import com.kakaobank.imgsurfer.presentation.ContentViewModel
 import com.kakaobank.imgsurfer.presentation.adapter.ArchivedContentAdapter
 import com.kakaobank.imgsurfer.presentation.screen.ContentDetailActivity.Companion.ARG_IMAGE_URL
 import com.kakaobank.imgsurfer.presentation.screen.ContentDetailActivity.Companion.ARG_TITLE
-import com.kakaobank.imgsurfer.util.binding.BindingFragment
-import com.kakaobank.imgsurfer.util.extension.collectFlow
+import com.kakaobank.imgsurfer.presentation.util.binding.BindingFragment
+import com.kakaobank.imgsurfer.presentation.util.extension.collectFlow
 
 class ArchiveFragment : BindingFragment<FragmentArchiveBinding>(R.layout.fragment_archive) {
     private val viewModel: ContentViewModel by activityViewModels()

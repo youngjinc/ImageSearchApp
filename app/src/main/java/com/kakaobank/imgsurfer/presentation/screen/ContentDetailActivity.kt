@@ -4,7 +4,7 @@ import android.os.Bundle
 import coil.load
 import com.kakaobank.imgsurfer.R
 import com.kakaobank.imgsurfer.databinding.ActivityContentDetailBinding
-import com.kakaobank.imgsurfer.util.binding.BindingActivity
+import com.kakaobank.imgsurfer.presentation.util.binding.BindingActivity
 
 class ContentDetailActivity :
     BindingActivity<ActivityContentDetailBinding>(R.layout.activity_content_detail) {

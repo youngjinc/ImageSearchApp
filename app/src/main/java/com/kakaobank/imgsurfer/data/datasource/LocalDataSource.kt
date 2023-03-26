@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.core.content.edit
 import com.kakaobank.imgsurfer.data.model.ContentEntity
 import com.kakaobank.imgsurfer.domain.model.Content
-import com.kakaobank.imgsurfer.util.KakaoLog
+import com.kakaobank.imgsurfer.data.util.KakaoLog
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.decodeFromString

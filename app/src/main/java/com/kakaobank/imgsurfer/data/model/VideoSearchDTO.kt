@@ -1,7 +1,7 @@
 package com.kakaobank.imgsurfer.data.model
 
+import com.kakaobank.imgsurfer.data.util.toLocalDatetimeForDTO
 import com.kakaobank.imgsurfer.domain.model.Content
-import com.kakaobank.imgsurfer.util.extension.toLocalDatetimeForDTO
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

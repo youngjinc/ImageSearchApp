@@ -1,6 +1,5 @@
-package com.kakaobank.imgsurfer.util.extension
+package com.kakaobank.imgsurfer.data.util
 
-import com.kakaobank.imgsurfer.util.KakaoLog
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
