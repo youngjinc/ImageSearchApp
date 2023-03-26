@@ -23,7 +23,12 @@ class LocalDataSource @Inject constructor(
     var contents: List<Content>
         set(value) = pref.edit {
             val contentEntity =
-                value.map { ContentEntity(it.imageUrl, it.dateTime.toString(), it.source) }
+                value.map {
+                    ContentEntity(it.thumbnailUrl,
+                        it.imageUrl,
+                        it.dateTime.toString(),
+                        it.source)
+                }
             putString(KEY_ARCHIVED_CONTENTS, json.encodeToString(contentEntity))
         }
         get() {

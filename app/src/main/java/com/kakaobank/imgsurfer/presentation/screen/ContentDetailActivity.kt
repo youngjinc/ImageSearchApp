@@ -30,6 +30,6 @@ class ContentDetailActivity :
 
     companion object {
         const val ARG_TITLE = "title"
-        const val ARG_IMAGE_URL = "imageUrl"
+        const val ARG_IMAGE_URL = "image"
     }
 }

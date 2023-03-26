@@ -46,7 +46,9 @@ class ArchiveFragment : BindingFragment<FragmentArchiveBinding>(R.layout.fragmen
     private fun moveToDetail(content: Content) {
         Intent(requireContext(), ContentDetailActivity::class.java).apply {
             putExtra(ARG_TITLE, content.source)
-            putExtra(ARG_IMAGE_URL, content.imageUrl)
+            putExtra(ARG_IMAGE_URL,
+                content.imageUrl
+                    ?: content.thumbnailUrl) // 동영상은 원본 이미지 url을 받아올 수 없기 때문에 디테일뷰에서 thumbnailUrl을 보여줌.
         }.also {
             startActivity(it)
         }

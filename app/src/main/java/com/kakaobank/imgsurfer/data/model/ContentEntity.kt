@@ -6,9 +6,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ContentEntity(
-    val imageUrl: String,
+    val thumbnailUrl: String,
+    val imageUrl: String?,
     val dateTime: String,
     val source: String,
 ) {
-    fun toContent() = Content(imageUrl, dateTime.toLocalDatetimeForEntity(), source)
+    fun toContent() = Content(thumbnailUrl, imageUrl, dateTime.toLocalDatetimeForEntity(), source)
 }

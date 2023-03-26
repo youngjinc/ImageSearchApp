@@ -12,5 +12,7 @@ data class VideoSearchDTO(
     val datetime: String,
     val author: String,
 ) {
-    fun toContentList() = Content(thumbnailUrl, datetime.toLocalDatetimeForDTO(), author)
+    fun toContentList() = Content(thumbnailUrl = thumbnailUrl,
+        dateTime = datetime.toLocalDatetimeForDTO(),
+        source = author)
 }

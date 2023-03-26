@@ -9,9 +9,11 @@ import kotlinx.serialization.Serializable
 data class ImageSearchDTO(
     @SerialName("thumbnail_url")
     val thumbnailUrl: String,
+    @SerialName("image_url")
+    val imageUrl: String,
     val datetime: String,
     @SerialName("display_sitename")
     val source: String,
 ) {
-    fun toContentList() = Content(thumbnailUrl, datetime.toLocalDatetimeForDTO(), source)
+    fun toContentList() = Content(thumbnailUrl, imageUrl, datetime.toLocalDatetimeForDTO(), source)
 }
