@@ -49,9 +49,7 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
 
         binding.etSearch.setOnEditorActionListener { keyword, id, _ ->
             if (id == EditorInfo.IME_ACTION_DONE) {
-                if (NetworkManager.checkNetworkState(requireContext()))
-                    searchContent(keyword.text.toString())
-                else viewModel.setSearchState(UiStateType.ERROR)
+                searchContent(keyword.text.toString())
                 binding.etSearch.clearFocus()
             }
             false
@@ -79,9 +77,12 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
         }
     }
 
+    /** 네트워크에 연결되어있는 경우, 유효한 검색어(한글자 이상)를 입력했을 때 검색 요청하는 함수 */
     private fun searchContent(keyword: String) {
-        if (keyword.isBlank()) requireContext().showToast(getString(R.string.search_keyword_input_request_toast_message))
-        else viewModel.searchContent(keyword)
+        if (NetworkManager.checkNetworkState(requireContext()))
+            if (keyword.isBlank()) requireContext().showToast(getString(R.string.search_keyword_input_request_toast_message))
+            else viewModel.searchContent(keyword)
+        else viewModel.setSearchState(UiStateType.ERROR)
     }
 
     /** 검색 결과 콘텐츠의 보관 상태를 업데이트. 보관 -> 보관해제, 보관해제 -> 보관 처리함. */
