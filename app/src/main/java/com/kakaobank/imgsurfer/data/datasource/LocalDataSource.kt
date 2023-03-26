@@ -39,9 +39,10 @@ class LocalDataSource @Inject constructor(
             }
         }
 
+    /** 콘텐츠를 보관함에 최신순으로 저장하는 함수. 추가 시 맨 앞(idx = 0)위치에 저장. */
     fun addArchivedContent(content: Content) {
         val contents = contents.toMutableList()
-        contents.add(0, content) // 보관 시간 최신순으로 저장하기 위해 맨 앞(idx = 0)위치에 저장
+        contents.add(0, content)
         this.contents = contents
     }
 
